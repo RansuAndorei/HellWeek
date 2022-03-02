@@ -1,0 +1,12 @@
+.container {
+  background-color: #656565;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.footerText {
+  color: white;
+}

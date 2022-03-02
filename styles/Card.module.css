@@ -1,0 +1,46 @@
+.cardContainer {
+  width: 25rem;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.6rem;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 15rem;
+  border-top-left-radius: 0.6rem;
+  border-top-right-radius: 0.6rem;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.cardTitleContainer {
+  color: #2c2e43;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0 1.5rem;
+}
+
+.ratingsContainer {
+  padding: 0 1.5rem;
+}
+
+.descriptionContainer {
+  padding: 0 1.5rem;
+  color: #2c2e43;
+  font-size: 15px;
+  padding-bottom: 2rem;
+}
+
+.ratingsFill {
+  color: #ff9e2d;
+  font-size: 2rem;
+}
+
+.ratingsNoFill {
+  color: #b2b2b2;
+  font-size: 2rem;
+}

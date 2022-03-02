@@ -1,0 +1,19 @@
+.welcomeContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 40vw;
+}
+
+.titleContainer {
+  top: 5vh;
+  left: 10vw;
+  position: absolute;
+  z-index: 1;
+  width: 15vw;
+}
+
+.title {
+  font-size: 6vw !important;
+  color: #2c2e43;
+}
