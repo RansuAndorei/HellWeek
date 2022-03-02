@@ -79,6 +79,7 @@ const Home: NextPage = ({
     <div className={styles.container}>
       <Head>
         <title>Favorite Food</title>
+        <meta name="description" content="Hell Week Activities"></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout theme={color}>
@@ -87,12 +88,12 @@ const Home: NextPage = ({
             className={`btn btn-${color.buttonColor} ${styles.toggleButton}`}
             onClick={changeTheme}
           >
-            {color === lightTheme ? "☽" : "☼"}
+            {color === lightTheme ? "☾" : "☼"}
           </button>
         </div>
         <Title
           title="Welcome to my Favorite Dishes"
-          backgroundImage="/public/static/images/foodBg3.png"
+          backgroundImage="/static/images/foodBg.jpg"
         />
         <div className={`${styles.mainContainer} bg-${color.backgroundColor}`}>
           <Sort

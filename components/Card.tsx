@@ -30,13 +30,7 @@ const Card = ({ data, theme }: CardProp) => {
       className={`shadow-lg mb-5 bg-${theme.divBackgroundColor} ${styles.cardContainer}`}
     >
       <div className={`${styles.imageContainer}`}>
-        <Image
-          src={data.image}
-          alt={data.name}
-          layout="fill"
-          quality={100}
-          priority
-        />
+        <Image src={data.image} alt={data.name} layout="fill" priority />
       </div>
       <div
         className={`display-4 ${styles.cardTitleContainer} bg-${theme.divBackgroundColor}`}
