@@ -32,7 +32,7 @@ const Card = ({ data, theme }: CardProp) => {
       <div className={`${styles.imageContainer}`}>
         <Image
           src={data.image}
-          alt={"foodBg"}
+          alt={data.name}
           layout="fill"
           quality={100}
           priority
