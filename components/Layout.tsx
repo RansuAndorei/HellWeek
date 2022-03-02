@@ -1,16 +1,17 @@
 import Header from "./Header";
 import Footer from "./Footer";
-
+import { Color } from "../types";
 interface LayoutProps {
   children: React.ReactNode;
+  theme: Color;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, theme }: LayoutProps) => {
   return (
     <>
-      <Header />
+      <Header theme={theme} />
       {children}
-      <Footer />
+      <Footer theme={theme} />
     </>
   );
 };
