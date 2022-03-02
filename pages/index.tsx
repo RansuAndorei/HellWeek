@@ -81,7 +81,7 @@ const Home: NextPage = ({
         <title>Favorite Food</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout>
+      <Layout theme={color}>
         <div className={styles.toggleButtonContainer}>
           <button
             className={`btn btn-${color.buttonColor} ${styles.toggleButton}`}

@@ -1,9 +1,22 @@
 import styles from "../styles/Footer.module.css";
+import { Color } from "../types";
+import { useState, useEffect } from "react";
+interface LayoutProps {
+  theme: Color;
+}
 
-const Footer = () => {
+const Footer = ({ theme }: LayoutProps) => {
+  const [colors, setColors] = useState(theme);
+
+  useEffect(() => {
+    setColors(theme);
+  }, [theme]);
+
   return (
-    <div className={styles.container}>
-      <span className={styles.footerText}>All rights reserved 2022</span>
+    <div className={`${styles.container} bg-${colors.textColor}`}>
+      <span className={`${styles.footerText} text-${colors.backgroundColor}`}>
+        All rights reserved 2022
+      </span>
     </div>
   );
 };
