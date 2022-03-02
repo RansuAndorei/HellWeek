@@ -8,6 +8,7 @@ import Card from "../components/Card";
 import Sort from "../components/Sort";
 import Layout from "../components/Layout";
 import { Food } from "../types";
+import { lightTheme, darkTheme } from "../data/colors";
 
 // import { useState } from "react";
 
@@ -31,6 +32,7 @@ const Home: NextPage = ({
   const [sortedFoods, setSortedFoods] = useState(FavoriteFoods);
   const [text, setText] = useState("");
   const [sort, setSort] = useState("name");
+  const [color, setColors] = useState(lightTheme);
 
   const changeSort = (type: string) => {
     setSort(type);
@@ -63,6 +65,16 @@ const Home: NextPage = ({
     changeSort(sort);
   };
 
+  const changeTheme = () => {
+    setColors((prev) => {
+      if (prev === lightTheme) {
+        return darkTheme;
+      } else {
+        return lightTheme;
+      }
+    });
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -70,20 +82,29 @@ const Home: NextPage = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
+        <div className={styles.toggleButtonContainer}>
+          <button
+            className={`btn btn-${color.buttonColor} ${styles.toggleButton}`}
+            onClick={changeTheme}
+          >
+            {color === lightTheme ? "☽" : "☼"}
+          </button>
+        </div>
         <Title
           title="Welcome to my Favorite Dishes"
           backgroundImage="/../public/images/foodBg3.png"
         />
-        <div className={styles.mainContainer}>
+        <div className={`${styles.mainContainer} bg-${color.backgroundColor}`}>
           <Sort
             text={text}
             sort={sort}
             filterFood={filterFood}
             changeSort={changeSort}
+            theme={color}
           />
-          <div className={styles.cardsContainer}>
+          <div className={`${styles.cardsContainer}`}>
             {sortedFoods.map((food: Food) => {
-              return <Card key={food.id} data={food} />;
+              return <Card key={food.id} data={food} theme={color} />;
             })}
             {sortedFoods.length === 0 && (
               <span className="display-5 m-10">No Food Found</span>

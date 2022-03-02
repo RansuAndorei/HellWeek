@@ -1,12 +1,13 @@
 import styles from "../styles/Card.module.css";
 import Image from "next/image";
-import { Food, Movie } from "../types";
+import { Food, Movie, Color } from "../types";
 
 interface CardProp {
   data: Food | Movie;
+  theme: Color;
 }
 
-const Card = ({ data }: CardProp) => {
+const Card = ({ data, theme }: CardProp) => {
   const ratingsFill = (star: number) => {
     let rating = "";
     for (let i = 0; i < star; i++) {
@@ -26,7 +27,7 @@ const Card = ({ data }: CardProp) => {
   return (
     <div
       key={data.id}
-      className={`shadow-lg mb-5 bg-white ${styles.cardContainer}`}
+      className={`shadow-lg mb-5 bg-${theme.divBackgroundColor} ${styles.cardContainer}`}
     >
       <div className={`${styles.imageContainer}`}>
         <Image
@@ -37,16 +38,24 @@ const Card = ({ data }: CardProp) => {
           priority
         />
       </div>
-      <div className={`display-4 ${styles.cardTitleContainer}`}>
-        {data.name}
+      <div
+        className={`display-4 ${styles.cardTitleContainer} bg-${theme.divBackgroundColor}`}
+      >
+        <span className={`text-${theme.textColor}`}>{data.name}</span>
       </div>
-      <div className={styles.ratingsContainer}>
+      <div
+        className={`${styles.ratingsContainer} bg-${theme.divBackgroundColor}`}
+      >
         <span className={styles.ratingsFill}>{ratingsFill(data.rating)}</span>
         <span className={styles.ratingsNoFill}>
           {ratingsNoFill(data.rating)}
         </span>
       </div>
-      <div className={styles.descriptionContainer}>{data.description}</div>
+      <div
+        className={`${styles.descriptionContainer} bg-${theme.divBackgroundColor}`}
+      >
+        <span className={`text-${theme.textColor}`}>{data.description}</span>
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   border-radius: 0.6rem;
+  overflow: hidden;
 }
 
 .imageContainer {

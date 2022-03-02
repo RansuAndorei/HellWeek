@@ -1,21 +1,26 @@
 import styles from "../styles/Sort.module.css";
-
+import { Color } from "../types";
 interface sortType {
   text: string;
   sort: string;
   changeSort: (text: string) => void;
   filterFood: (text: string) => void;
+  theme: Color;
 }
 
-const Sort = ({ text, sort, changeSort, filterFood }: sortType) => {
+const Sort = ({ text, sort, changeSort, filterFood, theme }: sortType) => {
   return (
     <div className={styles.sortContainer}>
-      <div className={styles.sortText}>Sort by:</div>
+      <div className={`${styles.sortText} text-${theme.textColor}`}>
+        Sort by:
+      </div>
       <div className={styles.sortButtonContainer}>
         <button
           type="button"
           className={`btn ${
-            sort === "name" ? "btn-dark" : "btn-outline-dark"
+            sort === "name"
+              ? `btn-${theme.buttonColor}`
+              : `btn-outline-${theme.buttonColor}`
           } ${styles.sortButton}`}
           onClick={() => changeSort("name")}
         >
@@ -24,7 +29,9 @@ const Sort = ({ text, sort, changeSort, filterFood }: sortType) => {
         <button
           type="button"
           className={`btn ${
-            sort === "increasing" ? "btn-dark" : "btn-outline-dark"
+            sort === "increasing"
+              ? `btn-${theme.buttonColor}`
+              : `btn-outline-${theme.buttonColor}`
           } ${styles.sortButton}`}
           onClick={() => changeSort("increasing")}
         >
@@ -33,7 +40,9 @@ const Sort = ({ text, sort, changeSort, filterFood }: sortType) => {
         <button
           type="button"
           className={`btn ${
-            sort === "decreasing" ? "btn-dark" : "btn-outline-dark"
+            sort === "decreasing"
+              ? `btn-${theme.buttonColor}`
+              : `btn-outline-${theme.buttonColor}`
           } ${styles.sortButton}`}
           onClick={() => changeSort("decreasing")}
         >
