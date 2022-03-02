@@ -13,7 +13,6 @@ const Title = (props: props) => {
         src={props.backgroundImage}
         alt={"foodBg"}
         layout="fill"
-        quality={100}
         priority
       />
       <div className={styles.titleContainer}>
