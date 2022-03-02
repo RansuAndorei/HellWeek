@@ -39,3 +39,14 @@
 .tab:hover {
   background-color: #e8e8e8;
 }
+
+.toggleButton {
+  padding: 0 5vw;
+  text-align: center;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  cursor: pointer;
+  transition: linear 0.5s;
+}
