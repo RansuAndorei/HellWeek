@@ -92,7 +92,7 @@ const Home: NextPage = ({
         </div>
         <Title
           title="Welcome to my Favorite Dishes"
-          backgroundImage="/../public/static/images/foodBg3.png"
+          backgroundImage="/public/static/images/foodBg3.png"
         />
         <div className={`${styles.mainContainer} bg-${color.backgroundColor}`}>
           <Sort
