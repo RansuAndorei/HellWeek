@@ -3,10 +3,11 @@ import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import data from "../data/favoriteFood";
-// import Title from "../components/Title";
+import Title from "../components/Title";
 import Card from "../components/Card";
 import Sort from "../components/Sort";
 import Layout from "../components/Layout";
+import ImageView from "../components/ImageView";
 import { Food } from "../types";
 import { lightTheme, darkTheme } from "../data/colors";
 
@@ -17,6 +18,8 @@ const Home: NextPage = ({
   const [text, setText] = useState("");
   const [sort, setSort] = useState("name");
   const [color, setColors] = useState(lightTheme);
+  const [showImage, setShowImage] = useState(false);
+  const [modalImage, setModalImage] = useState("");
 
   const changeSort = (type: string) => {
     setSort(type);
@@ -59,6 +62,15 @@ const Home: NextPage = ({
     });
   };
 
+  const getClickedImage = (image: string) => {
+    setModalImage(image);
+    setShowImage(true);
+  };
+
+  const closeImage = () => {
+    setShowImage(false);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -75,10 +87,11 @@ const Home: NextPage = ({
             {color === lightTheme ? "☾" : "☼"}
           </button>
         </div>
-        {/* <Title
+        {showImage && <ImageView closeImage={closeImage} image={modalImage} />}
+        <Title
           title="Welcome to my Favorite Dishes"
           backgroundImage="/static/images/foodBg.jpg"
-        /> */}
+        />
         <div className={`${styles.mainContainer} bg-${color.backgroundColor}`}>
           <Sort
             text={text}
@@ -89,7 +102,14 @@ const Home: NextPage = ({
           />
           <div className={`${styles.cardsContainer}`}>
             {sortedFoods.map((food: Food) => {
-              return <Card key={food.id} data={food} theme={color} />;
+              return (
+                <Card
+                  key={food.id}
+                  data={food}
+                  theme={color}
+                  getClickedImage={getClickedImage}
+                />
+              );
             })}
             {sortedFoods.length === 0 && (
               <span className="display-5 m-10">No Food Found</span>
