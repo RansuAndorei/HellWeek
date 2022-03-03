@@ -1,0 +1,53 @@
+.container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  border: solid 1px;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imageContainer {
+  border: solid 1px gold;
+  position: fixed;
+  width: 400px;
+  height: 240px;
+  animation: enlarge 1s forwards;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+@keyframes enlarge {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(200%, 200%);
+    opacity: 100;
+  }
+}
+
+.closeButtonContainer {
+  position: fixed;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 4rem;
+  right: 4rem;
+  border-radius: 5rem;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.closeButton {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}

@@ -5,9 +5,10 @@ import { Food, Movie, Color } from "../types";
 interface CardProp {
   data: Food | Movie;
   theme: Color;
+  getClickedImage: (text: string) => void;
 }
 
-const Card = ({ data, theme }: CardProp) => {
+const Card = ({ data, theme, getClickedImage }: CardProp) => {
   const ratingsFill = (star: number) => {
     let rating = "";
     for (let i = 0; i < star; i++) {
@@ -30,7 +31,16 @@ const Card = ({ data, theme }: CardProp) => {
       className={`shadow-lg mb-5 bg-${theme.divBackgroundColor} ${styles.cardContainer}`}
     >
       <div className={`${styles.imageContainer}`}>
-        <Image src={data.image} alt={data.name} layout="fill" priority />
+        <Image
+          src={data.image}
+          alt={data.name}
+          layout="fill"
+          priority
+          onClick={() => {
+            getClickedImage(data.image);
+          }}
+          className={styles.cardImage}
+        />
       </div>
       <div
         className={`display-4 ${styles.cardTitleContainer} bg-${theme.divBackgroundColor}`}

@@ -6,6 +6,7 @@
   margin-bottom: 1.5rem;
   border-radius: 0.6rem;
   overflow: hidden;
+  animation: 1.5s ease bounce;
 }
 
 .imageContainer {
@@ -16,6 +17,19 @@
   overflow: hidden;
   position: relative;
   margin-bottom: 1rem;
+  cursor: pointer;
+}
+
+.cardImage {
+  transition: 1s;
+}
+
+.cardImage:hover {
+  transform: scale(110%);
+}
+
+.imageContainer > Image:focus {
+  transform: scale(100);
 }
 
 .cardTitleContainer {
@@ -44,4 +58,30 @@
 .ratingsNoFill {
   color: #b2b2b2;
   font-size: 2rem;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(100%);
+  }
+  30% {
+    transform: translateY(-10%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(-2%);
+  }
+  70% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 100;
+  }
 }
