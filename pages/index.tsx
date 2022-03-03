@@ -10,22 +10,6 @@ import Layout from "../components/Layout";
 import { Food } from "../types";
 import { lightTheme, darkTheme } from "../data/colors";
 
-// import { useState } from "react";
-
-/*
-  1. Create a NextJS application that showcases your favourite foods (or dishes) in card format. (List at least 6 foods)
-    1. FoodCard contains:
-        1. Image
-        2. Description (Describe it’s contents)
-        3. Rating (Out of 5)
-  2. Allow users to filter by name.
-    1. Let’s say your favourite foods are: [”apple”, “banana”, “steak”]
-        1. If you type “a”, then your list should only contain foods that contain “a” (returns apple, banana, steak)
-        2. If you type “ea”, then your list only returns foods that contain “ea” (returns steak)
-  3. Allow users to sort by rating
-    1. Returns list in increasing or decreasing order by rating.
-*/
-
 const Home: NextPage = ({
   FavoriteFoods,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
@@ -91,10 +75,10 @@ const Home: NextPage = ({
             {color === lightTheme ? "☾" : "☼"}
           </button>
         </div>
-        <Title
+        {/* <Title
           title="Welcome to my Favorite Dishes"
           backgroundImage="/static/images/foodBg.jpg"
-        />
+        /> */}
         <div className={`${styles.mainContainer} bg-${color.backgroundColor}`}>
           <Sort
             text={text}
