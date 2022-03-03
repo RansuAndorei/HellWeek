@@ -3,7 +3,7 @@ import { useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import data from "../data/favoriteFood";
-import Title from "../components/Title";
+// import Title from "../components/Title";
 import Card from "../components/Card";
 import Sort from "../components/Sort";
 import Layout from "../components/Layout";
