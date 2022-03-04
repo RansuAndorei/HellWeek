@@ -56,7 +56,20 @@ const FormPage: NextPage = ({
             name: data.name,
             image: data.image,
           };
-          sessionStorage.setItem(`${params.formId}`, JSON.stringify(formData));
+
+          const storedFood = sessionStorage.getItem("Food");
+          if (storedFood === null) {
+            const newFood = [];
+            newFood.push(formData);
+            sessionStorage.setItem(`${params.formId}`, JSON.stringify(newFood));
+          } else {
+            const parsedStoredFood = JSON.parse(storedFood);
+            sessionStorage.setItem(
+              `${params.formId}`,
+              JSON.stringify([...parsedStoredFood, formData])
+            );
+          }
+
           notify();
           setTimeout(() => {
             router.push(`/${params.formId}`);
