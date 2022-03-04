@@ -20,3 +20,10 @@ export interface Color {
   textColor: string;
   buttonColor: string;
 }
+
+export interface Form {
+  name: string;
+  description: string;
+  rating: number;
+  image: string;
+}
