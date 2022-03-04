@@ -15,6 +15,7 @@ import Link from "next/link";
 const Food: NextPage = ({
   FavoriteFoods,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const [listOfFoods, setListOfFoods] = useState(FavoriteFoods);
   const [sortedFoods, setSortedFoods] = useState(FavoriteFoods);
   const [text, setText] = useState("");
   const [sort, setSort] = useState("name");
@@ -26,10 +27,14 @@ const Food: NextPage = ({
     const newFood = sessionStorage.getItem("Food");
     if (newFood !== null) {
       const parsedNewFood = JSON.parse(newFood);
-      const newSorted = [...sortedFoods, parsedNewFood];
+      const newSorted = [...sortedFoods, ...parsedNewFood];
       setSortedFoods(newSorted);
+      setListOfFoods(newSorted);
       // localStorage.removeItem("Food");
     }
+    listOfFoods.forEach((data: Food) => {
+      console.log(data.id);
+    });
   }, []);
 
   const changeSort = (type: string) => {
@@ -53,7 +58,7 @@ const Food: NextPage = ({
   const filterFood = (text: string) => {
     setText(text);
     setSortedFoods(() => {
-      const tempFoods = FavoriteFoods.filter((food: Food) => {
+      const tempFoods = listOfFoods.filter((food: Food) => {
         if (food.name.toLowerCase().includes(text, 0)) {
           return food;
         }
