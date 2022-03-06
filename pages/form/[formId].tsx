@@ -8,174 +8,132 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import styles from "../../styles/Form.module.css";
 import { useRouter } from "next/router";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const FormPage: NextPage = ({
   params,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const schema = Yup.object({
+    name: Yup.string().required("* Name is required"),
+    image: Yup.string()
+      .required("* Image URL is required")
+      .url("* Enter a valid URL")
+      .test(
+        "checkURL",
+        "* Only Unsplash Images are available",
+        (image = "") => {
+          if (image.toLowerCase().includes("unsplash.com", 0)) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      ),
+    description: Yup.string().required("* Description is required"),
+    rating: Yup.number()
+      .typeError("* Rating is required")
+      .min(1, "* Rating must be in range of 1-5")
+      .max(5, "* Rating must be in range of 1-5")
+      .required("* Rating is required"),
+  });
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onBlur", resolver: yupResolver(schema) });
 
   const router = useRouter();
-  const notify = () =>
-    toast.success("🍽️ Adding your Food to the FoodList", {
-      position: "bottom-center",
-      autoClose: 3500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+
+  const onSubmit = (data: { [x: string]: object }) => {
+    const id = new Date().getTime();
+    const formData = {
+      id: id,
+      description: data.description,
+      rating: data.rating,
+      name: data.name,
+      image: data.image,
+    };
+
+    const storedFood = sessionStorage.getItem("Food");
+    if (storedFood === null) {
+      const newFood = [];
+      newFood.push(formData);
+      sessionStorage.setItem(`${params.formId}`, JSON.stringify(newFood));
+    } else {
+      const parsedStoredFood = JSON.parse(storedFood);
+      sessionStorage.setItem(
+        `${params.formId}`,
+        JSON.stringify([...parsedStoredFood, formData])
+      );
+    }
+    router.push(`/${params.formId}`);
+  };
 
   return (
     <div className={styles.container}>
       <h1 className="display-1 text-center mb-5">Form for {params.formId}</h1>
-      <ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
-      <form
-        onSubmit={handleSubmit((data) => {
-          const id = new Date().getTime();
-          const formData = {
-            id: id,
-            description: data.description,
-            rating: data.rating,
-            name: data.name,
-            image: data.image,
-          };
 
-          const storedFood = sessionStorage.getItem("Food");
-          if (storedFood === null) {
-            const newFood = [];
-            newFood.push(formData);
-            sessionStorage.setItem(`${params.formId}`, JSON.stringify(newFood));
-          } else {
-            const parsedStoredFood = JSON.parse(storedFood);
-            sessionStorage.setItem(
-              `${params.formId}`,
-              JSON.stringify([...parsedStoredFood, formData])
-            );
-          }
-
-          notify();
-          setTimeout(() => {
-            router.push(`/${params.formId}`);
-          }, 5000);
-        })}
-      >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-group form-container mb-3">
           <label htmlFor="name" className="mb-1">
             Name
           </label>
           <input
-            className={`form-control ${
-              errors.name?.type === "required" && "is-invalid"
-            }`}
-            {...register("name", { required: true })}
+            data-testid="input-name"
+            className={`form-control ${errors.name?.message && "is-invalid"}`}
+            {...register("name")}
           />
-          {errors.name?.type === "required" && (
-            <small className="form-text text-danger">* Name is required</small>
-          )}
+          <small className="form-text text-danger">
+            {errors.name?.message}
+          </small>
         </div>
+
         <div className="form-group form-container mb-3">
           <label htmlFor="image" className="mb-1">
             Image Url
           </label>
           <input
+            data-testid="input-image"
             type="url"
-            className={`form-control ${
-              errors.image?.type === "required" && "is-invalid"
-            } ${errors.image?.type === "checkUrl" && "is-invalid"}`}
-            {...register("image", {
-              required: "Image is required",
-              validate: {
-                checkUrl: (url) => {
-                  if (url.toLowerCase().includes("unsplash.com", 0)) {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                },
-              },
-            })}
+            className={`form-control ${errors.image?.message && "is-invalid"}`}
+            {...register("image")}
           />
-          {errors.image?.type === "required" && (
-            <small className="form-text text-danger">* Image is required</small>
-          )}
-          {errors.image?.type === "checkUrl" && (
-            <small className="form-text text-danger">
-              * Only{" "}
-              <a className="link-info" href="https://unsplash.com/">
-                Unsplash
-              </a>{" "}
-              Images are available
-            </small>
-          )}
+          <small className="form-text text-danger">
+            {errors.image?.message}
+          </small>
         </div>
+
         <div className="form-group form-container mb-3">
           <label htmlFor="description" className="mb-1">
             Description
           </label>
           <input
+            data-testid="input-description"
             className={`form-control ${
-              errors.description?.type === "required" && "is-invalid"
+              errors.description?.message && "is-invalid"
             }`}
-            {...register("description", {
-              required: "Description is required",
-            })}
+            {...register("description")}
           />
-          {errors.description?.type === "required" && (
-            <small className="form-text text-danger">
-              * Description is required
-            </small>
-          )}
+          <small className="form-text text-danger">
+            {errors.description?.message}
+          </small>
         </div>
+
         <div className="form-group form-container mb-3">
           <label htmlFor="rating" className="mb-1">
             Rating (1-5)
           </label>
           <input
+            data-testid="input-rating"
             type="number"
-            className={`form-control ${
-              errors.rating?.type === "required" && "is-invalid"
-            } ${errors.rating?.type === "min" && "is-invalid"} ${
-              errors.rating?.type === "max" && "is-invalid"
-            }`}
-            {...register("rating", {
-              required: "Rating is required",
-              min: 1,
-              max: 5,
-              valueAsNumber: true,
-            })}
+            className={`form-control ${errors.rating?.message && "is-invalid"}`}
+            {...register("rating")}
           />
-          {errors.rating?.type === "required" && (
-            <small className="form-text text-danger">
-              * Rating is required
-            </small>
-          )}
-          {errors.rating?.type === "min" && (
-            <small className="form-text text-danger">
-              * Rating must be in range of 1-5
-            </small>
-          )}
-          {errors.rating?.type === "max" && (
-            <small className="form-text text-danger">
-              * Rating must be in range of 1-5
-            </small>
-          )}
+          <small className="form-text text-danger">
+            {errors.rating?.message}
+          </small>
         </div>
 
         <div className="d-flex justify-content-center">

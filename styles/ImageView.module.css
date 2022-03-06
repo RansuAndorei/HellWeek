@@ -13,8 +13,8 @@
 .imageContainer {
   border: solid 1px gold;
   position: fixed;
-  width: 400px;
-  height: 240px;
+  width: 25vw;
+  height: 15vw;
   animation: enlarge 1s forwards;
   border-radius: 0.5rem;
   overflow: hidden;

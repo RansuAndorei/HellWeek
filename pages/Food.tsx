@@ -11,6 +11,7 @@ import ImageView from "../components/ImageView";
 import { Food } from "../types";
 import { lightTheme, darkTheme } from "../data/colors";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
 
 const Food: NextPage = ({
   FavoriteFoods,
@@ -26,16 +27,24 @@ const Food: NextPage = ({
   useEffect(() => {
     const newFood = sessionStorage.getItem("Food");
     if (newFood !== null) {
-      const parsedNewFood = JSON.parse(newFood);
-      const newSorted = [...sortedFoods, ...parsedNewFood];
+      const parsedNewFood = JSON.parse(newFood).reverse();
+      const newSorted = [...parsedNewFood, ...sortedFoods];
       setSortedFoods(newSorted);
       setListOfFoods(newSorted);
-      // localStorage.removeItem("Food");
+      notify();
     }
-    listOfFoods.forEach((data: Food) => {
-      console.log(data.id);
-    });
   }, []);
+
+  const notify = () =>
+    toast.success("🍽️ Food added to your Food list", {
+      position: "bottom-center",
+      autoClose: 3500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
 
   const changeSort = (type: string) => {
     setSort(type);
@@ -95,6 +104,17 @@ const Food: NextPage = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout theme={color}>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
         <div className={styles.toggleButtonContainer}>
           <button
             className={`btn btn-${color.buttonColor} ${styles.toggleButton}`}
