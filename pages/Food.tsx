@@ -12,6 +12,7 @@ import { Food } from "../types";
 import { lightTheme, darkTheme } from "../data/colors";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Food: NextPage = ({
   FavoriteFoods,
