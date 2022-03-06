@@ -45,7 +45,12 @@ const Card = ({ data, theme, getClickedImage }: CardProp) => {
       <div
         className={`display-4 ${styles.cardTitleContainer} bg-${theme.divBackgroundColor}`}
       >
-        <span className={`text-${theme.textColor}`}>{data.name}</span>
+        <span
+          className={`text-${theme.textColor}`}
+          data-testid="test-card-name"
+        >
+          {data.name}
+        </span>
       </div>
       <div
         className={`${styles.ratingsContainer} bg-${theme.divBackgroundColor}`}
