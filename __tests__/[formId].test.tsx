@@ -119,45 +119,39 @@ describe("Does it behave as expected", () => {
     expect(container.innerHTML).toMatch("* Rating must be in range of 1-5");
   });
 
-  // it("Check Successful Add Food", async () => {
-  //   const { container, getByTestId } = render(
-  //     <MyApp Component={Form} pageProps={props} />
-  //   );
+  it("Check Valid Input on Add Food", async () => {
+    const { container, getByTestId } = render(
+      <MyApp Component={Form} pageProps={props} />
+    );
 
-  //   await act(async () => {
-  //     const nameInput = getByTestId("input-name");
-  //     const imageInput = getByTestId("input-image");
-  //     const descriptionInput = getByTestId("input-description");
-  //     const ratingInput = getByTestId("input-rating");
+    await act(async () => {
+      const nameInput = getByTestId("input-name");
+      const imageInput = getByTestId("input-image");
+      const descriptionInput = getByTestId("input-description");
+      const ratingInput = getByTestId("input-rating");
 
-  //     changeInput(nameInput, "Arroz Caldo");
-  //     changeInput(
-  //       imageInput,
-  //       "https://images.unsplash.com/photo-1562967915-6ba607ff7d05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80"
-  //     );
-  //     changeInput(
-  //       descriptionInput,
-  //       "Frequently eaten at breakfast and merienda, arroz caldo is a rice porridge, taking its flavours from ginger, garlic, onions, and a tasty broth. Cuts of chicken and hard-boiled eggs are also added in and individual servings are finished off with fried garlic bits, chopped green onions, and a drizzle of kalamansi."
-  //     );
-  //     changeInput(ratingInput, "1");
+      changeInput(nameInput, "Arroz Caldo");
+      changeInput(
+        imageInput,
+        "https://images.unsplash.com/photo-1562967915-6ba607ff7d05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80"
+      );
+      changeInput(
+        descriptionInput,
+        "Frequently eaten at breakfast and merienda, arroz caldo is a rice porridge, taking its flavours from ginger, garlic, onions, and a tasty broth. Cuts of chicken and hard-boiled eggs are also added in and individual servings are finished off with fried garlic bits, chopped green onions, and a drizzle of kalamansi."
+      );
+      changeInput(ratingInput, "1");
 
-  //     expect(container.innerHTML).not.toMatch("* Name is required");
-  //     expect(container.innerHTML).not.toMatch("* Image URL is required");
-  //     expect(container.innerHTML).not.toMatch("* Enter a valid URL");
-  //     expect(container.innerHTML).not.toMatch(
-  //       "* Only Unsplash Images are available"
-  //     );
-  //     expect(container.innerHTML).not.toMatch("* Description is required");
-  //     expect(container.innerHTML).not.toMatch("* Rating is required");
-  //     expect(container.innerHTML).not.toMatch(
-  //       "* Rating must be in range of 1-5"
-  //     );
-
-  //     const submitButton = screen.getByText("Submit");
-  //     fireEvent.click(submitButton);
-
-  //     const newFood = sessionStorage.getItem("Food");
-  //     console.log("SESSION STORAGE: ", newFood);
-  //   });
-  // });
+      expect(container.innerHTML).not.toMatch("* Name is required");
+      expect(container.innerHTML).not.toMatch("* Image URL is required");
+      expect(container.innerHTML).not.toMatch("* Enter a valid URL");
+      expect(container.innerHTML).not.toMatch(
+        "* Only Unsplash Images are available"
+      );
+      expect(container.innerHTML).not.toMatch("* Description is required");
+      expect(container.innerHTML).not.toMatch("* Rating is required");
+      expect(container.innerHTML).not.toMatch(
+        "* Rating must be in range of 1-5"
+      );
+    });
+  });
 });

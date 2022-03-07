@@ -28,3 +28,29 @@ describe("Does it exist?", () => {
     getText("Movies");
   });
 });
+
+describe("Does it behave as expected?", () => {
+  beforeEach(() => {
+    render(<Header theme={theme} />);
+  });
+
+  it("Hell Week links to /", () => {
+    expect(screen.getByText("Hell Week").closest("div")).toHaveAttribute(
+      "href",
+      "/"
+    );
+  });
+
+  it("Food Tab links to /Food", () => {
+    expect(screen.getByText("Foods").closest("div")).toHaveAttribute(
+      "href",
+      "/Food"
+    );
+  });
+  it("Movie Tab links to /Movie", () => {
+    expect(screen.getByText("Movies").closest("div")).toHaveAttribute(
+      "href",
+      "/Movie"
+    );
+  });
+});

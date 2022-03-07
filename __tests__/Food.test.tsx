@@ -104,3 +104,28 @@ describe("Does it behave as expected", () => {
     expect(emptyText).toBeInTheDocument();
   });
 });
+
+it("Add Food", () => {
+  const MyApp = ({ Component, pageProps }: FormType) => {
+    return <Component {...pageProps} />;
+  };
+  const formData = {
+    id: 11,
+    description:
+      "Frequently eaten at breakfast and merienda, arroz caldo is a rice porridge, taking its flavours from ginger, garlic, onions, and a tasty broth. Cuts of chicken and hard-boiled eggs are also added in and individual servings are finished off with fried garlic bits, chopped green onions, and a drizzle of kalamansi.",
+    rating: "1",
+    name: "Arroz Caldo",
+    image:
+      "https://images.unsplash.com/photo-1562967915-6ba607ff7d05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2073&q=80",
+  };
+  const newFood = [];
+  newFood.push(formData);
+  sessionStorage.setItem("Food", JSON.stringify(newFood));
+
+  const favoriteFoods = mockFoodGetStaticProps();
+  const props = { FavoriteFoods: favoriteFoods };
+  render(<MyApp Component={Food} pageProps={props} />);
+
+  const cardList = screen.getAllByTestId("test-card-name");
+  expect(cardList.length).toBe(11);
+});
