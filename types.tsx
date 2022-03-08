@@ -4,6 +4,8 @@ export interface Food {
   description: string;
   rating: number;
   image: string;
+  phoneNumber: string;
+  releaseDate: null;
 }
 
 export interface Movie {
@@ -12,6 +14,8 @@ export interface Movie {
   description: string;
   rating: number;
   image: string;
+  phoneNumber: string;
+  releaseDate: Date;
 }
 
 export interface Color {

@@ -16,14 +16,18 @@ const FormPage: NextPage = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const schema = Yup.object({
     name: Yup.string().required("* Name is required"),
+    releaseDate: Yup.date().typeError("* Enter a valid Date"),
     image: Yup.string()
       .required("* Image URL is required")
       .url("* Enter a valid URL")
       .test(
         "checkURL",
-        "* Only Unsplash Images are available",
+        "* Only Unsplash and TMDB Images are available",
         (image = "") => {
-          if (image.toLowerCase().includes("unsplash.com", 0)) {
+          if (
+            image.toLowerCase().includes("unsplash.com", 0) ||
+            image.toLowerCase().includes("image.tmdb.org", 0)
+          ) {
             return true;
           } else {
             return false;
@@ -36,6 +40,21 @@ const FormPage: NextPage = ({
       .min(1, "* Rating must be in range of 1-5")
       .max(5, "* Rating must be in range of 1-5")
       .required("* Rating is required"),
+    phoneNumber: Yup.string()
+      .typeError("* Phone Number is required")
+      .required("* Phone Number is required")
+      .length(11, "* Enter a valid phone number")
+      .test(
+        "checkPhoneNumber",
+        "* Enter a valid phone number",
+        (phoneNumber = "") => {
+          if (phoneNumber[0] === "0" && phoneNumber[1] === "9") {
+            return true;
+          } else {
+            return false;
+          }
+        }
+      ),
   });
 
   const {
@@ -54,18 +73,20 @@ const FormPage: NextPage = ({
       rating: data.rating,
       name: data.name,
       image: data.image,
+      phoneNumber: data.phoneNumber,
+      releaseDate: data.releaseDate,
     };
 
-    const storedFood = sessionStorage.getItem("Food");
-    if (storedFood === null) {
-      const newFood = [];
-      newFood.push(formData);
-      sessionStorage.setItem(`${params.formId}`, JSON.stringify(newFood));
+    const storedData = sessionStorage.getItem(`${params.formId}`);
+    if (storedData === null) {
+      const newData = [];
+      newData.push(formData);
+      sessionStorage.setItem(`${params.formId}`, JSON.stringify(newData));
     } else {
-      const parsedStoredFood = JSON.parse(storedFood);
+      const parsedStoredData = JSON.parse(storedData);
       sessionStorage.setItem(
         `${params.formId}`,
-        JSON.stringify([...parsedStoredFood, formData])
+        JSON.stringify([...parsedStoredData, formData])
       );
     }
     router.push(`/${params.formId}`);
@@ -89,6 +110,25 @@ const FormPage: NextPage = ({
             {errors.name?.message}
           </small>
         </div>
+
+        {params.formId === "Movie" ? (
+          <div className="form-group form-container mb-3">
+            <label htmlFor="name" className="mb-1">
+              Release Date
+            </label>
+            <input
+              type={"date"}
+              data-testid="input-releaseDate"
+              className={`form-control ${
+                errors.releaseDate?.message && "is-invalid"
+              }`}
+              {...register("releaseDate")}
+            />
+            <small className="form-text text-danger">
+              {errors.releaseDate?.message}
+            </small>
+          </div>
+        ) : null}
 
         <div className="form-group form-container mb-3">
           <label htmlFor="image" className="mb-1">
@@ -133,6 +173,23 @@ const FormPage: NextPage = ({
           />
           <small className="form-text text-danger">
             {errors.rating?.message}
+          </small>
+        </div>
+
+        <div className="form-group form-container mb-3">
+          <label htmlFor="rating" className="mb-1">
+            Phone Number
+          </label>
+          <input
+            data-testid="input-rating"
+            type="text"
+            className={`form-control ${
+              errors.phoneNumber?.message && "is-invalid"
+            }`}
+            {...register("phoneNumber")}
+          />
+          <small className="form-text text-danger">
+            {errors.phoneNumber?.message}
           </small>
         </div>
 
