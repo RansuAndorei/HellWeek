@@ -29,6 +29,12 @@ const Food: NextPage = ({
     const newFood = sessionStorage.getItem("Food");
     if (newFood !== null) {
       const parsedNewFood = JSON.parse(newFood).reverse();
+      parsedNewFood.forEach((food: Food, index: number) => {
+        parsedNewFood[index].phoneNumber = `(${food.phoneNumber.slice(
+          0,
+          4
+        )}) ${food.phoneNumber.slice(4, 7)} - ${food.phoneNumber.slice(7, 12)}`;
+      });
       const newSorted = [...parsedNewFood, ...sortedFoods];
       setSortedFoods(newSorted);
       setListOfFoods(newSorted);
@@ -133,7 +139,7 @@ const Food: NextPage = ({
           <Sort
             text={text}
             sort={sort}
-            filterFood={filterFood}
+            filterData={filterFood}
             changeSort={changeSort}
             theme={color}
           />
@@ -169,6 +175,14 @@ export const getStaticProps: GetStaticProps = async () => {
   const FavoriteFoods: Food[] = [...data].sort((a, b) =>
     a.name > b.name ? 1 : b.name > a.name ? -1 : 0
   );
+
+  FavoriteFoods.forEach((food, index) => {
+    FavoriteFoods[index].phoneNumber = `(${food.phoneNumber.slice(
+      0,
+      4
+    )}) ${food.phoneNumber.slice(4, 7)} - ${food.phoneNumber.slice(7, 12)}`;
+  });
+
   return {
     props: {
       FavoriteFoods,

@@ -4,11 +4,11 @@ interface sortType {
   text: string;
   sort: string;
   changeSort: (text: string) => void;
-  filterFood: (text: string) => void;
+  filterData: (text: string) => void;
   theme: Color;
 }
 
-const Sort = ({ text, sort, changeSort, filterFood, theme }: sortType) => {
+const Sort = ({ text, sort, changeSort, filterData, theme }: sortType) => {
   return (
     <div className={styles.sortContainer}>
       <div className={`${styles.sortText} text-${theme.textColor}`}>
@@ -54,7 +54,7 @@ const Sort = ({ text, sort, changeSort, filterFood, theme }: sortType) => {
           id="name"
           type="text"
           value={text}
-          onChange={(event) => filterFood(event.target.value)}
+          onChange={(event) => filterData(event.target.value)}
           className="form-control"
           placeholder="Filter"
         />

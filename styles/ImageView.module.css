@@ -18,6 +18,7 @@
   animation: enlarge 1s forwards;
   border-radius: 0.5rem;
   overflow: hidden;
+  background-color: gainsboro;
 }
 
 @keyframes enlarge {

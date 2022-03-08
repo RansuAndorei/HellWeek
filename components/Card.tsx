@@ -42,6 +42,7 @@ const Card = ({ data, theme, getClickedImage }: CardProp) => {
           className={styles.cardImage}
         />
       </div>
+
       <div
         className={`display-4 ${styles.cardTitleContainer} bg-${theme.divBackgroundColor}`}
       >
@@ -49,9 +50,15 @@ const Card = ({ data, theme, getClickedImage }: CardProp) => {
           className={`text-${theme.textColor}`}
           data-testid="test-card-name"
         >
-          {data.name}
+          <span className={`${styles.cardTitleText}`}>{data.name} </span>
+          {data.releaseDate ? (
+            <span
+              className={`${styles.cardReleaseDateText} ${styles.cardReleaseDateText}`}
+            >{`(${data.releaseDate})`}</span>
+          ) : null}
         </span>
       </div>
+
       <div
         className={`${styles.ratingsContainer} bg-${theme.divBackgroundColor}`}
       >
@@ -60,10 +67,19 @@ const Card = ({ data, theme, getClickedImage }: CardProp) => {
           {ratingsNoFill(data.rating)}
         </span>
       </div>
+
       <div
         className={`${styles.descriptionContainer} bg-${theme.divBackgroundColor}`}
       >
         <span className={`text-${theme.textColor}`}>{data.description}</span>
+      </div>
+
+      <div
+        className={`${styles.phoneNumberContainer} bg-${theme.divBackgroundColor}`}
+      >
+        <span className={`text-${theme.textColor} text-center`}>
+          {data.phoneNumber}
+        </span>
       </div>
     </div>
   );

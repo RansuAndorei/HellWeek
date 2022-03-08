@@ -18,6 +18,7 @@
   position: relative;
   margin-bottom: 1rem;
   cursor: pointer;
+  position: relative;
 }
 
 .cardImage {
@@ -39,6 +40,10 @@
   padding: 0 1.5rem;
 }
 
+.cardReleaseDateText {
+  font-weight: normal;
+}
+
 .ratingsContainer {
   padding: 0 1.5rem;
 }
@@ -47,7 +52,14 @@
   padding: 0 1.5rem;
   color: #2c2e43;
   font-size: 15px;
+}
+
+.phoneNumberContainer {
+  text-align: center;
   padding-bottom: 2rem;
+  margin-top: 1rem;
+  font-style: italic;
+  font-weight: bold;
 }
 
 .ratingsFill {
