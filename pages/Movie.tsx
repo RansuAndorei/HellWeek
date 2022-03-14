@@ -179,11 +179,9 @@ const Movie: NextPage = ({
 export const getStaticProps: GetStaticProps = async () => {
   // const page = Math.floor(Math.random() * 500) + 1;
   const page = 1;
+  console.log(process.env.movieAPIKey);
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.movieAPIKey?.slice(
-      0,
-      -1
-    )}&language=en-US&page=${page}&adult=false`
+    `https://api.themoviedb.org/3/movie/popular?api_key=16794745eedc3a49b32035138f1cf028&language=en-US&page=${page}&adult=false`
   );
   const posts = await res.json();
 
