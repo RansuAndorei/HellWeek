@@ -122,9 +122,9 @@ const Food: NextPage = ({
           draggable
           pauseOnHover
         />
-        <div className={styles.toggleButtonContainer}>
+        <div className={styles["toggle-button-container"]}>
           <button
-            className={`btn btn-${color.buttonColor} ${styles.toggleButton}`}
+            className={`btn btn-${color.buttonColor} ${styles["toggle-button"]}`}
             onClick={changeTheme}
           >
             {color === lightTheme ? "☾" : "☼"}
@@ -135,7 +135,9 @@ const Food: NextPage = ({
           title="Welcome to my Favorite Dishes"
           backgroundImage="/static/images/foodBg.jpg"
         />
-        <div className={`${styles.mainContainer} bg-${color.backgroundColor}`}>
+        <div
+          className={`${styles["main-container"]} bg-${color.backgroundColor}`}
+        >
           <Sort
             text={text}
             sort={sort}
@@ -143,12 +145,12 @@ const Food: NextPage = ({
             changeSort={changeSort}
             theme={color}
           />
-          <div className={styles.addContainer}>
+          <div className={styles["add-container"]}>
             <Link href={"/form/Food"}>
               <a className="btn btn-success w-50">Add Food</a>
             </Link>
           </div>
-          <div className={`${styles.cardsContainer}`}>
+          <div className={`${styles["cards-container"]}`}>
             {sortedFoods.map((food: Food) => {
               return (
                 <Card
@@ -176,12 +178,14 @@ export const getStaticProps: GetStaticProps = async () => {
     a.name > b.name ? 1 : b.name > a.name ? -1 : 0
   );
 
-  FavoriteFoods.forEach((food, index) => {
-    FavoriteFoods[index].phoneNumber = `(${food.phoneNumber.slice(
-      0,
-      4
-    )}) ${food.phoneNumber.slice(4, 7)} - ${food.phoneNumber.slice(7, 12)}`;
-  });
+  if (FavoriteFoods[0].phoneNumber.length === 11) {
+    FavoriteFoods.forEach((food, index) => {
+      FavoriteFoods[index].phoneNumber = `(${food.phoneNumber.slice(
+        0,
+        4
+      )}) ${food.phoneNumber.slice(4, 7)} - ${food.phoneNumber.slice(7, 12)}`;
+    });
+  }
 
   return {
     props: {

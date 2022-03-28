@@ -4,13 +4,13 @@
   height: 100%;
   border: solid 1px;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0 0 0 50%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.imageContainer {
+.image-container {
   border: solid 1px gold;
   position: fixed;
   width: 25vw;
@@ -18,7 +18,7 @@
   animation: enlarge 1s forwards;
   border-radius: 0.5rem;
   overflow: hidden;
-  background-color: gainsboro;
+  background-color: rgb(220 220 220);
 }
 
 @keyframes enlarge {
@@ -33,7 +33,7 @@
   }
 }
 
-.closeButtonContainer {
+.close-button-container {
   position: fixed;
   width: 3rem;
   height: 3rem;
@@ -47,7 +47,7 @@
   z-index: 5;
 }
 
-.closeButton {
+.close-button {
   position: relative;
   width: 100%;
   height: 100%;

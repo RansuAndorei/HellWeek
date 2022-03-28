@@ -127,9 +127,9 @@ const Movie: NextPage = ({
           draggable
           pauseOnHover
         />
-        <div className={styles.toggleButtonContainer}>
+        <div className={styles["toggle-button-container"]}>
           <button
-            className={`btn btn-${color.buttonColor} ${styles.toggleButton}`}
+            className={`btn btn-${color.buttonColor} ${styles["toggle-button"]}`}
             onClick={changeTheme}
           >
             {color === lightTheme ? "☾" : "☼"}
@@ -140,7 +140,9 @@ const Movie: NextPage = ({
           title="Welcome to my Favorite Movies"
           backgroundImage="/static/images/movieBg.jpg"
         />
-        <div className={`${styles.mainContainer} bg-${color.backgroundColor}`}>
+        <div
+          className={`${styles["main-container"]} bg-${color.backgroundColor}`}
+        >
           <Sort
             text={text}
             sort={sort}
@@ -148,12 +150,12 @@ const Movie: NextPage = ({
             changeSort={changeSort}
             theme={color}
           />
-          <div className={styles.addContainer}>
+          <div className={styles["add-container"]}>
             <Link href={"/form/Movie"}>
               <a className="btn btn-success w-50">Add Movie</a>
             </Link>
           </div>
-          <div className={`${styles.cardsContainer}`}>
+          <div className={`${styles["cards-container"]}`}>
             {sortedMovies.map((movie: Movie) => {
               return (
                 <Card
@@ -179,9 +181,9 @@ const Movie: NextPage = ({
 export const getStaticProps: GetStaticProps = async () => {
   // const page = Math.floor(Math.random() * 500) + 1;
   const page = 1;
-  console.log(process.env.movieAPIKey);
+  // console.log(process.env.movieAPIKey);
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=16794745eedc3a49b32035138f1cf028&language=en-US&page=${page}&adult=false`
+    `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.movieAPIKey}&language=en-US&page=${page}&adult=false`
   );
   const posts = await res.json();
 

@@ -26,15 +26,17 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout theme={color}>
-        <div className={styles.toggleButtonContainer}>
+        <div className={styles["toggle-button-container"]}>
           <button
-            className={`btn btn-${color.buttonColor} ${styles.toggleButton}`}
+            className={`btn btn-${color.buttonColor} ${styles["toggle-button"]}`}
             onClick={changeTheme}
           >
             {color === lightTheme ? "☾" : "☼"}
           </button>
         </div>
-        <div className={`${styles.indexContainer} bg-${color.backgroundColor}`}>
+        <div
+          className={`${styles["index-container"]} bg-${color.backgroundColor}`}
+        >
           <h1 className={`display-1 text-${color.textColor}`}>
             Welcome to Hell Week
           </h1>

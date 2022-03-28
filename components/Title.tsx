@@ -8,14 +8,14 @@ interface props {
 
 const Title = (props: props) => {
   return (
-    <div className={styles.welcomeContainer}>
+    <div className={styles["welcome-container"]}>
       <Image
         src={props.backgroundImage}
         alt={"foodBg"}
         layout="fill"
         priority
       />
-      <div className={styles.titleContainer}>
+      <div className={styles["title-container"]}>
         <h1 className={`display-1 ${styles.title}`}>{props.title}</h1>
       </div>
     </div>

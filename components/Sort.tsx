@@ -10,18 +10,18 @@ interface sortType {
 
 const Sort = ({ text, sort, changeSort, filterData, theme }: sortType) => {
   return (
-    <div className={styles.sortContainer}>
-      <div className={`${styles.sortText} text-${theme.textColor}`}>
+    <div className={styles["sort-container"]}>
+      <div className={`${styles["sort-text"]} text-${theme.textColor}`}>
         Sort by:
       </div>
-      <div className={styles.sortButtonContainer}>
+      <div className={styles["sort-button-container"]}>
         <button
           type="button"
           className={`btn ${
             sort === "name"
               ? `btn-${theme.buttonColor}`
               : `btn-outline-${theme.buttonColor}`
-          } ${styles.sortButton}`}
+          } ${styles["sort-button"]}`}
           onClick={() => changeSort("name")}
         >
           Name
@@ -32,7 +32,7 @@ const Sort = ({ text, sort, changeSort, filterData, theme }: sortType) => {
             sort === "increasing"
               ? `btn-${theme.buttonColor}`
               : `btn-outline-${theme.buttonColor}`
-          } ${styles.sortButton}`}
+          } ${styles["sort-button"]}`}
           onClick={() => changeSort("increasing")}
         >
           Ratings (Ascending)
@@ -43,13 +43,13 @@ const Sort = ({ text, sort, changeSort, filterData, theme }: sortType) => {
             sort === "decreasing"
               ? `btn-${theme.buttonColor}`
               : `btn-outline-${theme.buttonColor}`
-          } ${styles.sortButton}`}
+          } ${styles["sort-button"]}`}
           onClick={() => changeSort("decreasing")}
         >
           Ratings (Descending)
         </button>
       </div>
-      <div className={styles.inputContainer}>
+      <div className={styles["input-container"]}>
         <input
           id="name"
           type="text"
