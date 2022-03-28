@@ -16,6 +16,8 @@ const data = {
     "It’s the Filipino dish everybody knows — the mighty adobo. It is made by stewing meat (usually chicken, pork, or a combination of both) in soy sauce and vinegar, adding peppercorns and bay leaves for that special flavour. Bonus leftovers tip: pull the meat from the bone and fry ’til crispy for some tasty adobo flakes.",
   rating: 5,
   image: "/static/images/adobo.jpg",
+  phoneNumber: "09358171232",
+  releaseDate: null,
 };
 const theme = {
   backgroundColor: "white",
