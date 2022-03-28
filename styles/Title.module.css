@@ -1,12 +1,12 @@
-.welcome-container {
+.welcomeContainer {
   width: 100%;
   overflow: hidden;
   position: relative;
   height: 40vw;
 }
 
-.title-container {
-  top: 1vw;
+.titleContainer {
+  top: 5vw;
   left: 10vw;
   position: absolute;
   z-index: 1;
