@@ -14,7 +14,9 @@ const Footer = ({ theme }: LayoutProps) => {
 
   return (
     <div className={`${styles.container} bg-${colors.textColor}`}>
-      <span className={`${styles.footerText} text-${colors.backgroundColor}`}>
+      <span
+        className={`${styles["footer-text"]} text-${colors.backgroundColor}`}
+      >
         All rights reserved 2022
       </span>
     </div>

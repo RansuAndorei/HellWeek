@@ -24,7 +24,7 @@ describe("Does it exist?", () => {
     expect(image).toBeInTheDocument();
   });
   it("Renders the Close Button", () => {
-    const closeButton = screen.getByText("✘");
-    expect(closeButton).toBeInTheDocument();
+    const close-button = screen.getByText("✘");
+    expect(close-button).toBeInTheDocument();
   });
 });
