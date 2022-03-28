@@ -6,11 +6,13 @@
     "plugin:jest/recommended",
     "prettier"
   ],
-  "parser": "babel-eslint",
   "rules": {
     "prefer-const": "error",
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-var-requires": "eslint-disable-next-line"
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }
