@@ -20,7 +20,7 @@ const Header = ({ theme }: LayoutProps) => {
           <a className={`text-${colors.textColor}`}>Hell Week</a>
         </div>
       </Link>
-      <div className={styles["tab-container"]}>
+      <div className={styles.tabContainer}>
         <Link href={"/Food"} passHref={true}>
           <div className={styles.tab} data-testid="food-link">
             <a className={`text-${colors.textColor}`}>Foods</a>

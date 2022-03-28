@@ -10,13 +10,13 @@ const ImageView = ({ closeImage, image }: Param) => {
   return (
     <>
       <div className={styles.container}>
-        <div className={`${styles["image-container"]}`}>
+        <div className={`${styles.imageContainer}`}>
           <Image src={image} layout="fill" alt={image} />
         </div>
       </div>
-      <div className={styles["close-button-container"]}>
+      <div className={styles.closeButtonContainer}>
         <button
-          className={`btn btn-light ${styles["close-button"]}`}
+          className={`btn btn-light ${styles.closeButton}`}
           onClick={closeImage}
         >
           ✘

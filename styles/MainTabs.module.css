@@ -6,12 +6,12 @@
   align-items: center;
 }
 
-.main-container {
+.mainContainer {
   width: 100%;
   padding: 2rem 5vw;
 }
 
-.cards-container {
+.cardsContainer {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -20,7 +20,7 @@
   padding: 1rem 5vw;
 }
 
-.toggle-button-container {
+.toggleButtonContainer {
   position: fixed;
   width: 3.5rem;
   height: 3.5rem;
@@ -33,13 +33,13 @@
   overflow: hidden;
 }
 
-.toggle-button {
+.toggleButton {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.add-container {
+.addContainer {
   display: flex;
   align-items: center;
   justify-content: center;
