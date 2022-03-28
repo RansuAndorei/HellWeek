@@ -28,7 +28,7 @@ describe("Does it exist?", () => {
         text={text}
         sort={sort}
         changeSort={changeSort}
-        filterFood={filterFood}
+        filterData={filterFood}
         theme={theme}
       />
     );
