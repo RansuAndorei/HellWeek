@@ -5,7 +5,7 @@
   align-items: center;
 }
 
-.tabContainer {
+.tab-container {
   display: flex;
   flex: 1;
   justify-content: flex-end;
@@ -40,7 +40,7 @@
   background-color: #e8e8e8;
 }
 
-.toggleButton {
+.toggle-button {
   padding: 0 5vw;
   text-align: center;
   height: 100%;

@@ -28,9 +28,9 @@ const Card = ({ data, theme, getClickedImage }: CardProp) => {
   return (
     <div
       key={data.id}
-      className={`shadow-lg mb-5 bg-${theme.divBackgroundColor} ${styles.cardContainer}`}
+      className={`shadow-lg mb-5 bg-${theme.divBackgroundColor} ${styles["card-container"]}`}
     >
-      <div className={`${styles.imageContainer}`}>
+      <div className={`${styles["image-container"]}`}>
         <Image
           src={data.image}
           alt={data.name}
@@ -39,43 +39,45 @@ const Card = ({ data, theme, getClickedImage }: CardProp) => {
           onClick={() => {
             getClickedImage(data.image);
           }}
-          className={styles.cardImage}
+          className={styles["card-image"]}
         />
       </div>
 
       <div
-        className={`display-4 ${styles.cardTitleContainer} bg-${theme.divBackgroundColor}`}
+        className={`display-4 ${styles["card-title-container"]} bg-${theme.divBackgroundColor}`}
       >
         <span
           className={`text-${theme.textColor}`}
           data-testid="test-card-name"
         >
-          <span className={`${styles.cardTitleText}`}>{data.name} </span>
+          <span className={`${styles["card-title-text"]}`}>{data.name} </span>
           {data.releaseDate ? (
             <span
-              className={`${styles.cardReleaseDateText} ${styles.cardReleaseDateText}`}
+              className={`${styles["card-release-date-text"]} ${styles["card-release-date-text"]}`}
             >{`(${data.releaseDate})`}</span>
           ) : null}
         </span>
       </div>
 
       <div
-        className={`${styles.ratingsContainer} bg-${theme.divBackgroundColor}`}
+        className={`${styles["ratings-container"]} bg-${theme.divBackgroundColor}`}
       >
-        <span className={styles.ratingsFill}>{ratingsFill(data.rating)}</span>
-        <span className={styles.ratingsNoFill}>
+        <span className={styles["ratings-fill"]}>
+          {ratingsFill(data.rating)}
+        </span>
+        <span className={styles["ratings-no-fill"]}>
           {ratingsNoFill(data.rating)}
         </span>
       </div>
 
       <div
-        className={`${styles.descriptionContainer} bg-${theme.divBackgroundColor}`}
+        className={`${styles["description-container"]} bg-${theme.divBackgroundColor}`}
       >
         <span className={`text-${theme.textColor}`}>{data.description}</span>
       </div>
 
       <div
-        className={`${styles.phoneNumberContainer} bg-${theme.divBackgroundColor}`}
+        className={`${styles["phone-number-container"]} bg-${theme.divBackgroundColor}`}
       >
         <span className={`text-${theme.textColor} text-center`}>
           {data.phoneNumber}
